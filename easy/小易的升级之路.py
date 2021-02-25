@@ -24,7 +24,7 @@
 
 
 def hcf(num1, num2):
-	smaller = num1 if num1 <= num2 else num2
+	smaller = int(num1) if num1 <= num2 else int(num2)
 	hcf_num = 1
 	for i in range(1, smaller + 1):
 		if (num1 % i == 0) and (num2 % i == 0):
@@ -32,19 +32,14 @@ def hcf(num1, num2):
 	return hcf_num
 
 
-def dfs(n, a, N, b):
-	if n == int(N)-1:
-		return a
-	else:
-		if a < int(b[n]):
-			a += hcf(a, int(b[n]))
-		else:
-			a += int(b[n])
-		dfs(n + 1, a, N,b)
-
-
 if __name__ == '__main__':
-	N = input("怪物的数量N：")
-	a = input("小易的初始能力值：")
-	b = list(input().strip().split())
-	print(dfs(0, int(a), int(N), b))
+	while True:
+		N, a = map(int, input().strip().split())
+		b = map(int, input().strip().split())
+		b = list(b)
+		for i in b:
+			if a < i:
+				a += int(hcf(a, i))
+			else:
+				a += i
+		print(int(a))
