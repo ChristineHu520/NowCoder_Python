@@ -3,6 +3,8 @@
 # @Time    : 2021/3/1 9:04
 # @Author  : ChristineHu
 """
+
+
 """
 n 只奶牛坐在一排，每个奶牛拥有 ai 个苹果，现在你要在它们之间转移苹果，使得最后所有奶牛拥有的苹果数都相同，
 每一次，你只能从一只奶牛身上拿走恰好两个苹果到另一个奶牛上，问最少需要移动多少次可以平分苹果，如果方案不存在输出 -1。
@@ -18,13 +20,41 @@ n 只奶牛坐在一排，每个奶牛拥有 ai 个苹果，现在你要在它�
 	3
 """
 
+
+# 优化代码
+# def solve(nums):
+# 	_sum = sum(nums)
+# 	if _sum % len(nums):
+# 		return -1
+# 	avg = _sum // len(nums)
+# 	res = 0
+# 	for n in nums:
+# 		if abs(n - avg) % 2:
+# 			return -1
+# 		res += abs(n - avg)
+# 	return res // 4
+
+# 代码无措，程序超时
+def solve(nums):
+	avge = sum(nums) / int(N)
+	if sum(nums) % int(N) != 0:
+		print(-1)
+	else:
+		count = int(0)
+		while True:
+			nums.sort()
+			if nums[0] == nums[-1]:
+				break
+			else:
+				nums[0] += 2
+				nums[-1] -= 2
+				count += 1
+		return count
+
 if __name__ == '__main__':
-	while True:
-		N = map(int, input().split())
-		cows = list(map(int, input().split()))
-		avge = sum(cows) / N
-		if sum(cows) % N != 0:
-			print(-1)
-		else:
+	N = int(input())
+	nums = list(map(int, input().split()))
+	print(solve(nums))
+
 
 
