@@ -20,22 +20,17 @@ ooo
     Yes
 """
 
-def find_subString(str_sub,str2):
-	i = 0
-	j = 0
-	result = 'no'
-	for i, j in zip(range(0,len(str_sub)), range(0,len(str2))):
+
+def find_subString(str_sub, str2):
+	i, j = 0, 0
+	while i < len(str_sub) and j < len(str2):
 		if str_sub[i] == str2[j]:
-			continue
-		else:
-			i -= 1
-	if i <= j and i == len(str_sub)-1:
-		result = 'Yes'
-	else:
-		result = 'No'
-	return result
+			i += 1
+		j += 1
+	return 'Yes' if i == len(str_sub) else 'No'
+
 
 if __name__ == '__main__':
 	str1 = input()
 	str_sub = input()
-	print(find_subString(str_sub,str1))
+	print(find_subString(str_sub, str1))
